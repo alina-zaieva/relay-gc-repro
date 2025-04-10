@@ -1,0 +1,20 @@
+type RestIssue {
+  issueId: ID!
+  title: String
+  url: String
+  number: Int
+  author: String
+}
+
+type ViewData {
+  searchPlaceholderText: String!
+  noResultsText: String!
+}
+
+type IssueViewData {
+  showAuthor: Boolean!
+}
+
+type IssueAuthorViewData {
+  avatarSize: Int!
+}
