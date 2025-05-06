@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<448e83c4bb3ca5ac57f926f13bbef138>>
+ * @generated SignedSource<<4d7d1b8adefa251388efe42e7acad831>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -30,7 +30,7 @@ export type IssuesInner_data$key = {
   readonly " $fragmentSpreads": FragmentRefs<"IssuesInner_data">;
 };
 
-import {restIssues as queryRestIssuesResolver} from './../resolvers/issues.resolver';
+import {restIssues as queryRestIssuesResolver} from '../resolvers/issues.resolver';
 import IssuesSearchQuery_graphql from './IssuesSearchQuery.graphql';
 import Query__restIssues$normalization_graphql from './Query__restIssues$normalization.graphql';
 

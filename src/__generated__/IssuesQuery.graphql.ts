@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b8974d10e7ddcac653321e19377befb5>>
+ * @generated SignedSource<<53f27408c2ca1e7a5486a7235fb9c2ac>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -28,7 +28,7 @@ export type IssuesQuery = {
   variables: IssuesQuery$variables;
 };
 
-import {viewData as queryViewDataResolver} from './../resolvers/viewData.resolver';
+import {viewData as queryViewDataResolver} from '../resolvers/viewData.resolver';
 import Query__viewData$normalization_graphql from './Query__viewData$normalization.graphql';
 
 const node: ConcreteRequest = (function(){

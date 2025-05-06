@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f65719c79907b125f56c856b37f4af95>>
+ * @generated SignedSource<<aab937a893b3af5d755067106e866c33>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -27,7 +27,7 @@ export type IssuesInner_viewData$key = {
   readonly " $fragmentSpreads": FragmentRefs<"IssuesInner_viewData">;
 };
 
-import {issueModel as viewDataIssueModelResolver} from './../resolvers/viewData.resolver';
+import {issueModel as viewDataIssueModelResolver} from '../resolvers/viewData.resolver';
 import ViewData__issueModel$normalization_graphql from './ViewData__issueModel$normalization.graphql';
 
 const node: ReaderFragment = {
