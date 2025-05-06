@@ -1,15 +1,17 @@
-import { LiveState, suspenseSentinel } from "relay-runtime";
-import { Query__restIssues$normalization } from "../__generated__/Query__restIssues$normalization.graphql";
-
+import { DataID, LiveState, suspenseSentinel } from "relay-runtime";
+import { ISSUES_STORE, RestIssue } from "./RestIssue.resolver";
 
 /**
  * @RelayResolver Query.restIssues(query: String): [RestIssue!]
  * @live
- *
  */
-export function restIssues({ query }: { query?: string | null}): LiveState<Query__restIssues$normalization[] | undefined> {
+export function restIssues({
+  query,
+}: {
+  query?: string | null;
+}): LiveState<{ id: DataID }[] | undefined> {
   const promise = fetchIssues(query || "");
-  let data: Query__restIssues$normalization[] | undefined;
+  let data: { id: DataID }[] | undefined;
 
   return {
     read: () => {
@@ -21,11 +23,16 @@ export function restIssues({ query }: { query?: string | null}): LiveState<Query
     },
     subscribe: (callback) => {
       let unsubscribed = false;
+      callback();
 
       promise
         .then((issues) => {
-          data = issues;
           if (!unsubscribed) {
+            for (const issue of issues) {
+              ISSUES_STORE.set(issue.id, issue);
+            }
+  
+            data = issues.map(({id}) => ({id}));
             callback();
           }
         })
@@ -40,9 +47,13 @@ export function restIssues({ query }: { query?: string | null}): LiveState<Query
   };
 }
 
-async function fetchIssues(query: string): Promise<Query__restIssues$normalization[]> {
+async function fetchIssues(
+  query: string
+): Promise<RestIssue[]> {
   const response = await fetch(
-    `https://api.github.com/search/issues?q=${encodeURIComponent(query)}+repo:facebook/relay+is:issue+is:open&sort=updated&order=desc&per_page=10`,
+    `https://api.github.com/search/issues?q=${encodeURIComponent(
+      query
+    )}+repo:facebook/relay+is:issue+is:open&sort=updated&order=desc&per_page=10`,
     {
       method: "GET",
       headers: [
@@ -52,15 +63,16 @@ async function fetchIssues(query: string): Promise<Query__restIssues$normalizati
     }
   );
   const data = await response.json();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const issues = (data.items as any[]).map(
     (item) =>
       ({
-        issueId: item.id,
+        id: btoa(`RestIssue_${item.id}`),
         title: item.title,
         url: item.html_url,
         number: item.number,
         author: item.user.login,
-      } satisfies Query__restIssues$normalization)
+      } satisfies RestIssue)
   );
   return issues;
 }

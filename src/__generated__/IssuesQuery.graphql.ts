@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<53f27408c2ca1e7a5486a7235fb9c2ac>>
+ * @generated SignedSource<<320697a46dc6dfa1c37680fb5177bf6b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,8 @@ import { FragmentRefs } from "relay-runtime";
 import { viewData as queryViewDataResolverType } from "../resolvers/viewData.resolver";
 // Type assertion validating that `queryViewDataResolverType` resolver is correctly implemented.
 // A type error here indicates that the type signature of the resolver module is incorrect.
-(queryViewDataResolverType satisfies () => Query__viewData$normalization | null | undefined);
+(queryViewDataResolverType satisfies () => ViewData | null | undefined);
+import { ViewData } from "../resolvers/viewData.resolver";
 export type IssuesQuery$variables = {
   query?: string | null | undefined;
 };
@@ -29,7 +30,6 @@ export type IssuesQuery = {
 };
 
 import {viewData as queryViewDataResolver} from '../resolvers/viewData.resolver';
-import Query__viewData$normalization_graphql from './Query__viewData$normalization.graphql';
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -45,7 +45,57 @@ v1 = [
     "name": "query",
     "variableName": "query"
   }
-];
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v3 = {
+  "kind": "InlineFragment",
+  "selections": [
+    {
+      "name": "__relay_model_instance",
+      "args": null,
+      "fragment": {
+        "kind": "InlineFragment",
+        "selections": [
+          (v2/*: any*/)
+        ],
+        "type": "RestIssue",
+        "abstractKey": null
+      },
+      "kind": "RelayResolver",
+      "storageKey": null,
+      "isOutputType": false
+    }
+  ],
+  "type": "RestIssue",
+  "abstractKey": null
+},
+v4 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "__relay_model_instance",
+    "storageKey": null
+  }
+],
+v5 = {
+  "kind": "InlineFragment",
+  "selections": (v4/*: any*/),
+  "type": "ViewData",
+  "abstractKey": null
+},
+v6 = {
+  "kind": "InlineFragment",
+  "selections": (v4/*: any*/),
+  "type": "IssueViewData",
+  "abstractKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -73,10 +123,9 @@ return {
           "resolverModule": queryViewDataResolver,
           "path": "viewData",
           "normalizationInfo": {
-            "kind": "OutputType",
+            "kind": "WeakModel",
             "concreteType": "ViewData",
-            "plural": false,
-            "normalizationNode": Query__viewData$normalization_graphql
+            "plural": false
           }
         },
         "linkedField": {
@@ -114,7 +163,7 @@ return {
           "fragment": null,
           "kind": "RelayResolver",
           "storageKey": null,
-          "isOutputType": true
+          "isOutputType": false
         },
         "linkedField": {
           "alias": null,
@@ -124,40 +173,38 @@ return {
           "name": "restIssues",
           "plural": true,
           "selections": [
+            (v2/*: any*/),
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "issueId",
-              "storageKey": null
-            },
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "number",
-              "storageKey": null
+              "args": null,
+              "fragment": (v3/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             },
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "title",
-              "storageKey": null
+              "args": null,
+              "fragment": (v3/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             },
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "url",
-              "storageKey": null
+              "args": null,
+              "fragment": (v3/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             },
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "author",
-              "storageKey": null
+              "args": null,
+              "fragment": (v3/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             }
           ],
           "storageKey": null
@@ -182,25 +229,27 @@ return {
           "plural": false,
           "selections": [
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "searchPlaceholderText",
-              "storageKey": null
+              "args": null,
+              "fragment": (v5/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             },
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "noResultsText",
-              "storageKey": null
+              "args": null,
+              "fragment": (v5/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             },
             {
               "kind": "ClientEdgeToClientObject",
               "backingField": {
                 "name": "issueModel",
                 "args": null,
-                "fragment": null,
+                "fragment": (v5/*: any*/),
                 "kind": "RelayResolver",
                 "storageKey": null,
                 "isOutputType": true
@@ -214,18 +263,19 @@ return {
                 "plural": false,
                 "selections": [
                   {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
                     "name": "showAuthor",
-                    "storageKey": null
+                    "args": null,
+                    "fragment": (v6/*: any*/),
+                    "kind": "RelayResolver",
+                    "storageKey": null,
+                    "isOutputType": true
                   },
                   {
                     "kind": "ClientEdgeToClientObject",
                     "backingField": {
                       "name": "authorModel",
                       "args": null,
-                      "fragment": null,
+                      "fragment": (v6/*: any*/),
                       "kind": "RelayResolver",
                       "storageKey": null,
                       "isOutputType": true
@@ -239,11 +289,17 @@ return {
                       "plural": false,
                       "selections": [
                         {
-                          "alias": null,
-                          "args": null,
-                          "kind": "ScalarField",
                           "name": "avatarSize",
-                          "storageKey": null
+                          "args": null,
+                          "fragment": {
+                            "kind": "InlineFragment",
+                            "selections": (v4/*: any*/),
+                            "type": "IssueAuthorViewData",
+                            "abstractKey": null
+                          },
+                          "kind": "RelayResolver",
+                          "storageKey": null,
+                          "isOutputType": true
                         }
                       ],
                       "storageKey": null

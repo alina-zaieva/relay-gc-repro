@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9e14e9fdbe9f390904775cd67ee84a21>>
+ * @generated SignedSource<<8c07c2b0e8bbf436a036dd390ba97a84>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,16 +9,25 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
+import { IssueAuthorViewData } from "../resolvers/viewData.resolver";
 import { FragmentRefs } from "relay-runtime";
 import { authorModel as issueViewDataAuthorModelResolverType } from "../resolvers/viewData.resolver";
 // Type assertion validating that `issueViewDataAuthorModelResolverType` resolver is correctly implemented.
 // A type error here indicates that the type signature of the resolver module is incorrect.
-(issueViewDataAuthorModelResolverType satisfies () => IssueViewData__authorModel$normalization | null | undefined);
+(issueViewDataAuthorModelResolverType satisfies (
+  __relay_model_instance: IssueViewData____relay_model_instance$data['__relay_model_instance'],
+) => IssueAuthorViewData | null | undefined);
+import { showAuthor as issueViewDataShowAuthorResolverType } from "../resolvers/viewData.resolver";
+// Type assertion validating that `issueViewDataShowAuthorResolverType` resolver is correctly implemented.
+// A type error here indicates that the type signature of the resolver module is incorrect.
+(issueViewDataShowAuthorResolverType satisfies (
+  __relay_model_instance: IssueViewData____relay_model_instance$data['__relay_model_instance'],
+) => boolean | null | undefined);
 export type Issue_viewData$data = {
   readonly authorModel: {
     readonly " $fragmentSpreads": FragmentRefs<"IssueAuthor_viewData">;
   } | null | undefined;
-  readonly showAuthor: boolean;
+  readonly showAuthor: boolean | null | undefined;
   readonly " $fragmentType": "Issue_viewData";
 };
 export type Issue_viewData$key = {
@@ -27,9 +36,17 @@ export type Issue_viewData$key = {
 };
 
 import {authorModel as issueViewDataAuthorModelResolver} from '../resolvers/viewData.resolver';
-import IssueViewData__authorModel$normalization_graphql from './IssueViewData__authorModel$normalization.graphql';
+import {showAuthor as issueViewDataShowAuthorResolver} from '../resolvers/viewData.resolver';
+import IssueViewData____relay_model_instance_graphql from './IssueViewData____relay_model_instance.graphql';
+import {resolverDataInjector} from 'relay-runtime/experimental';
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "args": null,
+  "kind": "FragmentSpread",
+  "name": "IssueViewData____relay_model_instance"
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": {
@@ -38,22 +55,30 @@ const node: ReaderFragment = {
   "name": "Issue_viewData",
   "selections": [
     {
+      "alias": null,
+      "args": null,
+      "fragment": (v0/*: any*/),
+      "kind": "RelayResolver",
+      "name": "showAuthor",
+      "resolverModule": resolverDataInjector(IssueViewData____relay_model_instance_graphql, issueViewDataShowAuthorResolver, '__relay_model_instance', true),
+      "path": "showAuthor"
+    },
+    {
       "kind": "ClientEdgeToClientObject",
       "concreteType": "IssueAuthorViewData",
       "modelResolvers": null,
       "backingField": {
         "alias": null,
         "args": null,
-        "fragment": null,
+        "fragment": (v0/*: any*/),
         "kind": "RelayResolver",
         "name": "authorModel",
-        "resolverModule": issueViewDataAuthorModelResolver,
+        "resolverModule": resolverDataInjector(IssueViewData____relay_model_instance_graphql, issueViewDataAuthorModelResolver, '__relay_model_instance', true),
         "path": "authorModel",
         "normalizationInfo": {
-          "kind": "OutputType",
+          "kind": "WeakModel",
           "concreteType": "IssueAuthorViewData",
-          "plural": false,
-          "normalizationNode": IssueViewData__authorModel$normalization_graphql
+          "plural": false
         }
       },
       "linkedField": {
@@ -72,23 +97,12 @@ const node: ReaderFragment = {
         ],
         "storageKey": null
       }
-    },
-    {
-      "kind": "ClientExtension",
-      "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "showAuthor",
-          "storageKey": null
-        }
-      ]
     }
   ],
   "type": "IssueViewData",
   "abstractKey": null
 };
+})();
 
 (node as any).hash = "8c6c1d8fcf0ee46ff5b6d3f6c386cd78";
 

@@ -14,7 +14,7 @@ export function Issue({ data, viewData }: IssueProps) {
   const issue = useFragment(
     graphql`
       fragment Issue_data on RestIssue {
-        issueId
+        id
         number
         title
         url

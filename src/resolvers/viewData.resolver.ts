@@ -1,32 +1,84 @@
+/**
+ * @RelayResolver ViewData
+ * @weak
+ */
+export type ViewData = {
+  searchPlaceholderText: string;
+  noResultsText: string;
+  issueModel: IssueViewData;
+};
 
-import { IssueViewData__authorModel$normalization } from "../__generated__/IssueViewData__authorModel$normalization.graphql";
-import { Query__viewData$normalization } from "../__generated__/Query__viewData$normalization.graphql";
-import { ViewData__issueModel$normalization } from "../__generated__/ViewData__issueModel$normalization.graphql";
+/**
+ * @RelayResolver IssueViewData
+ * @weak
+ */
+export type IssueViewData = {
+  showAuthor: boolean;
+  authorModel: IssueAuthorViewData;
+};
+
+/**
+ * @RelayResolver IssueAuthorViewData
+ * @weak
+ */
+export type IssueAuthorViewData = {
+  avatarSize: number;
+};
 
 /**
  * @RelayResolver Query.viewData: ViewData
  */
-export function viewData(): Query__viewData$normalization {
+export function viewData(): ViewData {
   return {
     searchPlaceholderText: "Search issues",
-    noResultsText: "No issues found"
+    noResultsText: "No issues found",
+    issueModel: {
+      showAuthor: true,
+      authorModel: {
+        avatarSize: 16,
+      },
+    },
   };
+}
+
+/**
+ * @RelayResolver ViewData.searchPlaceholderText: String
+ */
+export function searchPlaceholderText(viewData: ViewData): string {
+  return viewData.searchPlaceholderText;
+}
+
+/**
+ * @RelayResolver ViewData.noResultsText: String
+ */
+export function noResultsText(viewData: ViewData): string {
+  return viewData.noResultsText;
 }
 
 /**
  * @RelayResolver ViewData.issueModel: IssueViewData
  */
-export function issueModel(): ViewData__issueModel$normalization {
-  return {
-    showAuthor: true
-  };
+export function issueModel(viewData: ViewData): IssueViewData {
+  return viewData.issueModel;
+}
+
+/**
+ * @RelayResolver IssueViewData.showAuthor: Boolean
+ */
+export function showAuthor(viewData: IssueViewData): boolean {
+  return viewData.showAuthor;
 }
 
 /**
  * @RelayResolver IssueViewData.authorModel: IssueAuthorViewData
  */
-export function authorModel(): IssueViewData__authorModel$normalization {
-  return {
-    avatarSize: 16,
-  }
+export function authorModel(viewData: IssueViewData): IssueAuthorViewData {
+  return viewData.authorModel;
+}
+
+/**
+ * @RelayResolver IssueAuthorViewData.avatarSize: Int
+ */
+export function avatarSize(viewData: IssueAuthorViewData): number {
+  return viewData.avatarSize;
 }
