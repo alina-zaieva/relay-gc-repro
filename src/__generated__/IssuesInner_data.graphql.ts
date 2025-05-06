@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4d7d1b8adefa251388efe42e7acad831>>
+ * @generated SignedSource<<25ac028c9f60aeeb8059b5eb82cbc062>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
-import { LiveState, FragmentRefs } from "relay-runtime";
+import { LiveState, FragmentRefs, DataID } from "relay-runtime";
 import { restIssues as queryRestIssuesResolverType } from "../resolvers/issues.resolver";
 // Type assertion validating that `queryRestIssuesResolverType` resolver is correctly implemented.
 // A type error here indicates that the type signature of the resolver module is incorrect.
@@ -17,10 +17,12 @@ import { restIssues as queryRestIssuesResolverType } from "../resolvers/issues.r
   args: {
     query: string | null | undefined;
   },
-) => LiveState<ReadonlyArray<Query__restIssues$normalization> | null | undefined>);
+) => LiveState<ReadonlyArray<{
+  readonly id: DataID;
+}> | null | undefined>);
 export type IssuesInner_data$data = {
   readonly restIssues: ReadonlyArray<{
-    readonly issueId: string;
+    readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"Issue_data">;
   }> | null | undefined;
   readonly " $fragmentType": "IssuesInner_data";
@@ -31,8 +33,8 @@ export type IssuesInner_data$key = {
 };
 
 import {restIssues as queryRestIssuesResolver} from '../resolvers/issues.resolver';
-import IssuesSearchQuery_graphql from './IssuesSearchQuery.graphql';
-import Query__restIssues$normalization_graphql from './Query__restIssues$normalization.graphql';
+import RestIssue__id_graphql from './RestIssue__id.graphql';
+import {resolverDataInjector} from 'relay-runtime/experimental';
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -51,19 +53,28 @@ return {
   ],
   "kind": "Fragment",
   "metadata": {
-    "hasClientEdges": true,
-    "refetch": {
-      "connection": null,
-      "fragmentPathInResult": [],
-      "operation": IssuesSearchQuery_graphql
-    }
+    "hasClientEdges": true
   },
   "name": "IssuesInner_data",
   "selections": [
     {
       "kind": "ClientEdgeToClientObject",
       "concreteType": "RestIssue",
-      "modelResolvers": null,
+      "modelResolvers": {
+        "RestIssue": {
+          "alias": null,
+          "args": [],
+          "fragment": {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "RestIssue__id"
+          },
+          "kind": "RelayLiveResolver",
+          "name": "restIssues",
+          "resolverModule": resolverDataInjector(RestIssue__id_graphql, queryRestIssuesResolver, 'id', true),
+          "path": "restIssues.__relay_model_instance"
+        }
+      },
       "backingField": {
         "alias": null,
         "args": (v0/*: any*/),
@@ -71,13 +82,7 @@ return {
         "kind": "RelayLiveResolver",
         "name": "restIssues",
         "resolverModule": queryRestIssuesResolver,
-        "path": "restIssues",
-        "normalizationInfo": {
-          "kind": "OutputType",
-          "concreteType": "RestIssue",
-          "plural": true,
-          "normalizationNode": Query__restIssues$normalization_graphql
-        }
+        "path": "restIssues"
       },
       "linkedField": {
         "alias": null,
@@ -91,7 +96,7 @@ return {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "issueId",
+            "name": "id",
             "storageKey": null
           },
           {
@@ -109,6 +114,6 @@ return {
 };
 })();
 
-(node as any).hash = "4b4d89fae9e315ed91eed1b7b938beac";
+(node as any).hash = "f5cd6b70743583320c4ab7716326aa5f";
 
 export default node;
