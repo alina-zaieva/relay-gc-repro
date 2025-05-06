@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<25ac028c9f60aeeb8059b5eb82cbc062>>
+ * @generated SignedSource<<9b5381b8f9753908f327febca0466c57>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -33,6 +33,7 @@ export type IssuesInner_data$key = {
 };
 
 import {restIssues as queryRestIssuesResolver} from '../resolvers/issues.resolver';
+import IssuesSearchQuery_graphql from './IssuesSearchQuery.graphql';
 import RestIssue__id_graphql from './RestIssue__id.graphql';
 import {resolverDataInjector} from 'relay-runtime/experimental';
 
@@ -53,7 +54,12 @@ return {
   ],
   "kind": "Fragment",
   "metadata": {
-    "hasClientEdges": true
+    "hasClientEdges": true,
+    "refetch": {
+      "connection": null,
+      "fragmentPathInResult": [],
+      "operation": IssuesSearchQuery_graphql
+    }
   },
   "name": "IssuesInner_data",
   "selections": [
@@ -114,6 +120,6 @@ return {
 };
 })();
 
-(node as any).hash = "f5cd6b70743583320c4ab7716326aa5f";
+(node as any).hash = "c5ca9d1bc9a5efd345727862631f8f44";
 
 export default node;

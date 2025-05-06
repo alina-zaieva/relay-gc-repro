@@ -3,10 +3,12 @@ import {
   graphql,
   useFragment,
   useLazyLoadQuery,
+  useRefetchableFragment,
 } from "react-relay";
 import { IssuesQuery } from "./__generated__/IssuesQuery.graphql";
 import { Issue } from "./Issue";
 import { IssuesInner_data$key } from "./__generated__/IssuesInner_data.graphql";
+import { IssuesSearchQuery } from "./__generated__/IssuesSearchQuery.graphql";
 import { IssuesInner_viewData$key } from "./__generated__/IssuesInner_viewData.graphql";
 
 export function Issues(): React.ReactNode {
@@ -38,9 +40,13 @@ interface IssuesInnerProps {
 }
 
 function IssuesInner({ data, viewData }: IssuesInnerProps) {
-  const { restIssues } = useFragment(
+  const [{ restIssues }, refetch] = useRefetchableFragment<
+    IssuesSearchQuery,
+    IssuesInner_data$key
+  >(
     graphql`
-      fragment IssuesInner_data on Query {
+      fragment IssuesInner_data on Query
+      @refetchable(queryName: "IssuesSearchQuery") {
         restIssues(query: $query) {
           id
           ...Issue_data
@@ -76,6 +82,7 @@ function IssuesInner({ data, viewData }: IssuesInnerProps) {
         value={query}
         onChange={(e) => {
           const newQuery = e.target.value;
+          refetch({ query: newQuery });
           setQuery(newQuery);
         }}
         placeholder={searchPlaceholderText}
@@ -85,7 +92,7 @@ function IssuesInner({ data, viewData }: IssuesInnerProps) {
         {issues
           .filter((issue) => !!issue)
           .map((issue) => (
-            <li key={issue.id}>
+            <li key={issue?.id}>
               <Issue data={issue} viewData={issueModel} />
             </li>
           ))}
