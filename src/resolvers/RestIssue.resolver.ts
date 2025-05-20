@@ -1,4 +1,4 @@
-import { DataID, LiveState } from "relay-runtime";
+import { DataID } from "relay-runtime";
 
 export const ISSUES_STORE = new Map<DataID, RestIssue>();
 
@@ -12,17 +12,10 @@ export type RestIssue = {
 
 /**
  * @RelayResolver RestIssue
- * @live
  */
-export function RestIssue(id: DataID): LiveState<RestIssue | undefined> {
+export function RestIssue(id: DataID): RestIssue | undefined {
   const issue = ISSUES_STORE.get(id);
-  return {
-    read: () => issue,
-    subscribe: (callback) => {
-      callback();
-      return () => undefined;
-    }
-  };
+  return issue;
 }
 
 /**

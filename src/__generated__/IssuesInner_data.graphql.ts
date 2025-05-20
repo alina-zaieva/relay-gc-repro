@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9b5381b8f9753908f327febca0466c57>>
+ * @generated SignedSource<<0b56be2595b5c26c8310bd936512e33c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -32,6 +32,7 @@ export type IssuesInner_data$key = {
   readonly " $fragmentSpreads": FragmentRefs<"IssuesInner_data">;
 };
 
+import {RestIssue as restIssueRelayModelInstanceResolver} from '../resolvers/RestIssue.resolver';
 import {restIssues as queryRestIssuesResolver} from '../resolvers/issues.resolver';
 import IssuesSearchQuery_graphql from './IssuesSearchQuery.graphql';
 import RestIssue__id_graphql from './RestIssue__id.graphql';
@@ -69,15 +70,15 @@ return {
       "modelResolvers": {
         "RestIssue": {
           "alias": null,
-          "args": [],
+          "args": null,
           "fragment": {
             "args": null,
             "kind": "FragmentSpread",
             "name": "RestIssue__id"
           },
-          "kind": "RelayLiveResolver",
-          "name": "restIssues",
-          "resolverModule": resolverDataInjector(RestIssue__id_graphql, queryRestIssuesResolver, 'id', true),
+          "kind": "RelayResolver",
+          "name": "__relay_model_instance",
+          "resolverModule": resolverDataInjector(RestIssue__id_graphql, restIssueRelayModelInstanceResolver, 'id', true),
           "path": "restIssues.__relay_model_instance"
         }
       },

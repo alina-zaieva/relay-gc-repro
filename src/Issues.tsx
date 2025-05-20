@@ -85,7 +85,7 @@ function IssuesInner({ data, viewData }: IssuesInnerProps) {
           refetch({ query: newQuery });
           setQuery(newQuery);
         }}
-        placeholder={searchPlaceholderText}
+        placeholder={searchPlaceholderText || ""}
       />
       <ul>
         {issues.length === 0 && noResultsText}

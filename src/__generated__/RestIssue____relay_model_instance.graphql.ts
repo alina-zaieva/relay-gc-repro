@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<329931a18f1890f29e10944b4c3e9b21>>
+ * @generated SignedSource<<cedb0aee75957c919c09979bde2242be>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,15 +9,15 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
-import { LiveState, FragmentRefs } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
 import { RestIssue as restIssueRelayModelInstanceResolverType } from "../resolvers/RestIssue.resolver";
 // Type assertion validating that `restIssueRelayModelInstanceResolverType` resolver is correctly implemented.
 // A type error here indicates that the type signature of the resolver module is incorrect.
 (restIssueRelayModelInstanceResolverType satisfies (
   id: RestIssue__id$data['id'],
-) => LiveState<unknown>);
+) => unknown);
 export type RestIssue____relay_model_instance$data = {
-  readonly __relay_model_instance: NonNullable<ReturnType<ReturnType<typeof restIssueRelayModelInstanceResolverType>["read"]>>;
+  readonly __relay_model_instance: NonNullable<ReturnType<typeof restIssueRelayModelInstanceResolverType>>;
   readonly " $fragmentType": "RestIssue____relay_model_instance";
 };
 export type RestIssue____relay_model_instance$key = {
@@ -43,7 +43,7 @@ const node: ReaderFragment = {
         "kind": "FragmentSpread",
         "name": "RestIssue__id"
       },
-      "kind": "RelayLiveResolver",
+      "kind": "RelayResolver",
       "name": "__relay_model_instance",
       "resolverModule": resolverDataInjector(RestIssue__id_graphql, restIssueRelayModelInstanceResolver, 'id', true),
       "path": "__relay_model_instance"
