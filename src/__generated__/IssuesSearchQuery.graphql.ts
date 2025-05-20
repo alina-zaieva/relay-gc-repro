@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<460fe5e7e9d512b63765c3d1a0beb0b8>>
+ * @generated SignedSource<<2f29f192b5cdc22798e8ff561ce826fd>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -35,7 +35,36 @@ v1 = [
     "name": "query",
     "variableName": "query"
   }
-];
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v3 = {
+  "kind": "InlineFragment",
+  "selections": [
+    {
+      "name": "__relay_model_instance",
+      "args": null,
+      "fragment": {
+        "kind": "InlineFragment",
+        "selections": [
+          (v2/*: any*/)
+        ],
+        "type": "RestIssue",
+        "abstractKey": null
+      },
+      "kind": "RelayResolver",
+      "storageKey": null,
+      "isOutputType": false
+    }
+  ],
+  "type": "RestIssue",
+  "abstractKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -66,7 +95,7 @@ return {
           "fragment": null,
           "kind": "RelayResolver",
           "storageKey": null,
-          "isOutputType": true
+          "isOutputType": false
         },
         "linkedField": {
           "alias": null,
@@ -76,40 +105,38 @@ return {
           "name": "restIssues",
           "plural": true,
           "selections": [
+            (v2/*: any*/),
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "issueId",
-              "storageKey": null
-            },
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "number",
-              "storageKey": null
+              "args": null,
+              "fragment": (v3/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             },
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "title",
-              "storageKey": null
+              "args": null,
+              "fragment": (v3/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             },
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "url",
-              "storageKey": null
+              "args": null,
+              "fragment": (v3/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             },
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
               "name": "author",
-              "storageKey": null
+              "args": null,
+              "fragment": (v3/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
             }
           ],
           "storageKey": null
@@ -128,6 +155,6 @@ return {
 };
 })();
 
-(node as any).hash = "4b4d89fae9e315ed91eed1b7b938beac";
+(node as any).hash = "c5ca9d1bc9a5efd345727862631f8f44";
 
 export default node;

@@ -48,7 +48,7 @@ function IssuesInner({ data, viewData }: IssuesInnerProps) {
       fragment IssuesInner_data on Query
       @refetchable(queryName: "IssuesSearchQuery") {
         restIssues(query: $query) {
-          issueId
+          id
           ...Issue_data
         }
       }
@@ -85,14 +85,14 @@ function IssuesInner({ data, viewData }: IssuesInnerProps) {
           refetch({ query: newQuery });
           setQuery(newQuery);
         }}
-        placeholder={searchPlaceholderText}
+        placeholder={searchPlaceholderText || ""}
       />
       <ul>
         {issues.length === 0 && noResultsText}
         {issues
           .filter((issue) => !!issue)
           .map((issue) => (
-            <li key={issue?.issueId}>
+            <li key={issue?.id}>
               <Issue data={issue} viewData={issueModel} />
             </li>
           ))}
